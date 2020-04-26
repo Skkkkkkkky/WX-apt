@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="container">
+	<!-- 获取头像用户名部分 -->
+	<view class="userinfo">
+		<button id="login" plain="true" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
+		<block wx:else style="position:relative">
+			<image id="pic" src="{{userInfo.avatarUrl}}"></image>
+			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+	</view>
+	<!-- 订单功能区 -->
+	<view id="sortPart">
+		<view>
+			<image class="sortView" wx:for="{{sort}}" src="{{item.sort_img}}" wx:key="*this"></image>
+			<view class="cb"></view>
+		</view>
+	</view>
+	<view id="sortPart">
+		<view>
+			<text class="sortView" wx:for="{{sort}}" wx:key="*this">{{item.name}}</text>
+			<view class="cb"></view>
+		</view>
+	</view>
+	<!-- 系统功能区 -->
+	<view id="personal">
+		<view wx:for="{{message}}" wx:key="*this">
+			<image src="{{item.msg_img}}"></image>
+			<text>{{item.name}}</text>
+			<text wx:if="{{item.value !== ' '}}" class="float-r">{{item.value}}</text>
+		</view>
+	</view>
+	<view class="order">
+		<view class="order-item">
+			<view class="iconfont icon-tuikuan"></view>
+			<view>待收款</view>
+		</view>
+		<view class="order-item">
+			<view class="iconfont icon-daishouhuo"></view>
+			<view>待收货</view>
+		</view>
+		<view class="order-item">
+			<view class="iconfont icon-tuikuan"></view>
+			<view>退款/退货</view>
+		</view>
+		<view class="order-item">
+			<view class="iconfont icon-quanbudingdan"></view>
+			<view>全部订单</view>
+		</view>
+	</view>
+</view>
